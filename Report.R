@@ -68,3 +68,19 @@ ggplot(gss_cat, aes(x = tvhours)) +
 ggplot(gss_cat, aes(x = marital, y = tvhours)) +
   geom_boxplot() +
   labs(title = "TV Hours by Marital Status")
+
+
+
+
+num_vars <- gss_cat %>%
+  select_if(is.numeric)
+
+cv_table <- data.frame(
+  Variable = names(num_vars),
+  Mean = sapply(num_vars, mean, na.rm = TRUE),
+  SD = sapply(num_vars, sd, na.rm = TRUE)
+)
+
+cv_table$CV <- (cv_table$SD / cv_table$Mean) * 100
+
+cv_table
