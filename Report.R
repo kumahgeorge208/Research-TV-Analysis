@@ -84,3 +84,10 @@ cv_table <- data.frame(
 cv_table$CV <- (cv_table$SD / cv_table$Mean) * 100
 
 cv_table
+
+
+
+write.csv(cv_table,
+          "CV_summary_statistics.csv",
+          row.names = FALSE)
+
